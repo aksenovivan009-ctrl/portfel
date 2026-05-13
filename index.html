@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Инвестиционный портфель</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Optimized Portfolio</p>
+        <h1>Инвестиционный портфель</h1>
+      </div>
+      <div class="actions">
+        <span id="quoteStatus" class="status">Котировки ещё не обновлялись</span>
+        <button id="refreshQuotes" type="button" title="Обновить котировки">
+          <span aria-hidden="true">↻</span>
+          Обновить котировки
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="kpis" aria-label="Сводка портфеля">
+        <article>
+          <span>Стоимость портфеля</span>
+          <strong id="totalValue"></strong>
+        </article>
+        <article>
+          <span>Ожидаемая доходность 3 мес.</span>
+          <strong id="portfolioReturn"></strong>
+        </article>
+        <article>
+          <span>Риск портфеля</span>
+          <strong id="portfolioRisk"></strong>
+        </article>
+        <article>
+          <span>Активов</span>
+          <strong id="assetCount"></strong>
+        </article>
+      </section>
+
+      <section class="layout">
+        <div class="panel table-panel">
+          <div class="section-head">
+            <div>
+              <h2>Состав</h2>
+              <p>Доли, вклад в доходность и актуальные котировки.</p>
+            </div>
+            <input id="assetSearch" type="search" placeholder="Поиск актива">
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Актив</th>
+                  <th>Категория</th>
+                  <th>Сумма</th>
+                  <th>Доля</th>
+                  <th>Доходность</th>
+                  <th>Риск</th>
+                  <th>Котировка</th>
+                  <th>Изм.</th>
+                </tr>
+              </thead>
+              <tbody id="holdingsBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <h2>Распределение</h2>
+          <canvas id="allocationChart" width="380" height="280"></canvas>
+          <div id="categoryLegend" class="legend"></div>
+        </aside>
+      </section>
+
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <h2>Риск и доходность</h2>
+            <p>Точки построены по листу Risk-Return Plot.</p>
+          </div>
+        </div>
+        <canvas id="riskReturnChart" width="980" height="390"></canvas>
+      </section>
+
+      <section class="panel">
+        <nav class="tabs" aria-label="Статистики">
+          <button class="tab active" data-tab="stats" type="button">Статистика</button>
+          <button class="tab" data-tab="correlation" type="button">Корреляция</button>
+          <button class="tab" data-tab="covariance" type="button">Ковариация</button>
+        </nav>
+        <div id="statsTab" class="tab-panel"></div>
+        <div id="correlationTab" class="tab-panel hidden"></div>
+        <div id="covarianceTab" class="tab-panel hidden"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
